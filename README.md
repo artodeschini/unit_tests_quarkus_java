@@ -423,12 +423,12 @@ A solução foi criar uma interface que continha todas as assinaturas dos metodo
 Código da interface
 
 ```java
-package org.todeschi.service;
+package org.todeschini.service;
 
 import java.util.List;
 
-import org.todeschi.configuracao.utils.componente.ComponenteConfiguradorBase;
-import org.todeschi.configuracao.utils.enums.TipoServicoEnum;
+import org.todeschini.configuracao.utils.componente.ComponenteConfiguradorBase;
+import org.todeschini.configuracao.utils.enums.TipoServicoEnum;
 
 public interface InterfaceConfigurador {
 
@@ -459,10 +459,10 @@ Crie uma camada para abstrair a integração
 * nota utilize os metodos get e set com o modificador synchronized especialmente devido aos testes quando houver concorrencia
 
 ```java
-package org.todeschi.integracao;
+package org.todeschini.integracao;
 
-import org.todeschi.service.ConfiguradorService;
-import org.todeschi.service.InterfaceConfigurador;
+import org.todeschini.service.ConfiguradorService;
+import org.todeschini.service.InterfaceConfigurador;
 
 public class Integrador {
 	
@@ -501,16 +501,16 @@ Já para os testes você pode injetar na classe uma outra implementação de Int
 Como a configuração é algo muito especifico de cada projeto mantenha o Fake no no seu projeto no diretorio de testes
 
 ```java
-package org.todeschi.integracao;
+package org.todeschini.integracao;
 
 import java.util.List;
 
-import org.todeschi.configuracao.utils.componente.ComponenteConfiguradorBase;
-import org.todeschi.configuracao.utils.componente.ComponenteConfiguradorMapeamentoEntrada;
-import org.todeschi.configuracao.utils.componente.ComponenteConfiguradorMapeamentoSaida;
-import org.todeschi.configuracao.utils.componente.ComponenteConfiguradorPesquisaMainframe;
-import org.todeschi.configuracao.utils.enums.TipoServicoEnum;
-import org.todeschi.service.InterfaceConfigurador;
+import org.todeschini.configuracao.utils.componente.ComponenteConfiguradorBase;
+import org.todeschini.configuracao.utils.componente.ComponenteConfiguradorMapeamentoEntrada;
+import org.todeschini.configuracao.utils.componente.ComponenteConfiguradorMapeamentoSaida;
+import org.todeschini.configuracao.utils.componente.ComponenteConfiguradorPesquisaMainframe;
+import org.todeschini.configuracao.utils.enums.TipoServicoEnum;
+import org.todeschini.service.InterfaceConfigurador;
 
 public class ConfiguradorFake implements InterfaceConfigurador {
 
@@ -579,7 +579,7 @@ public class ConfiguradorFake implements InterfaceConfigurador {
 Teste da classe utilitaria Integrador como exemplo de uso do configurador
 
 ```java
-package org.todeschi.integracao;
+package org.todeschini.integracao;
 
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -590,8 +590,8 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import org.todeschi.integracao.fake.ConfiguradorFake;
-import org.todeschi.service.ConfiguradorService;
+import org.todeschini.integracao.fake.ConfiguradorFake;
+import org.todeschini.service.ConfiguradorService;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class IntegradorTest {
@@ -663,11 +663,11 @@ Exemplo de utilização em classes de negocios ...
 Classe de Negocio 
 
 ```java 
-package org.todeschi.servico;
+package org.todeschini.servico;
 
-import org.todeschi.integracao.Integrador;
+import org.todeschini.integracao.Integrador;
 
-import org.todeschi.configuracao.utils.componente.ComponenteConfiguradorMapeamentoEntrada;
+import org.todeschini.configuracao.utils.componente.ComponenteConfiguradorMapeamentoEntrada;
 
 public class ClasseDeNegocio {
 
@@ -687,14 +687,14 @@ Teste da classe de Negocio
 
 
 ```java
-package org.todeschi.servico;
+package org.todeschini.servico;
 
 public class ClasseDeNegocioTest {
 
-import org.todeschi.integracao.ConfiguradorFake;
-import org.todeschi.modelo.Propriedade;
+import org.todeschini.integracao.ConfiguradorFake;
+import org.todeschini.modelo.Propriedade;
 
-import org.todeschi.configuracao.utils.componente.ComponenteConfiguradorMapeamentoEntrada;
+import org.todeschini.configuracao.utils.componente.ComponenteConfiguradorMapeamentoEntrada;
 
 	@BeforeEach
 	public void setUp() {
